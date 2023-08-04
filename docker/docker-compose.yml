@@ -1,0 +1,44 @@
+version: '3'
+services:
+  mysql:
+    container_name: mysql
+    build: ../docker/mysql
+    environment:
+      MYSQL_DATABASE: books
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: rootpassword
+      TZ: "Asia/Tokyo"
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mysql/initdb:/docker-entrypoint-initdb.d
+      - mysql_db:/var/lib/mysql
+  backend:
+    container_name: backend
+    build: ./spring
+    depends_on:
+      - mysql
+    links:
+      - mysql
+    ports:
+      - "8080:8080"
+    tty: true
+    volumes:
+      - ../spring_project:/srv:cached
+    working_dir: /srv
+  frontend:
+    container_name: frontend
+    build: ./react
+    depends_on:
+      - backend
+    command: sh -c "npm start"
+    ports:
+       - 3000:3000
+    volumes:
+      - ../react_app:/usr/src/app:cached
+    stdin_open: true
+    tty: true
+volumes:
+  mysql_db:
+    driver: local
