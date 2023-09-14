@@ -22,6 +22,7 @@ public class UserDetailsServiceImpl implements UserDetailsService{
         UserInfo userInfo = userInfoRepository.findByEmail(email)
                     .orElseThrow(() -> new UsernameNotFoundException(email));
 
+
         return User.withUsername(userInfo.getEmail())
                     .password(userInfo.getPassword())
                     .roles("USER")
