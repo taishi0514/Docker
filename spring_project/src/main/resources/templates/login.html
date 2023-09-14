@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+ 	<title>Book Memo</title>
+	<link th:href="@{/CSS/login.css}" rel="stylesheet">
+</head>
+
+<body>
+	<header>
+			<h1>Book Memo</h1>
+	</header>
+
+	<div>
+		<span th:text="${errorMsg}"></span>
+	</div>
+	<form th:action="@{/login}" method="post" th:object="${loginForm}">
+		<p class="info2">メールアドレス</p>
+		<input type="text" id="type_info"  name="email"  th:field="*{email}" placeholder="例）taro.yamada@example.com"/>
+		<p class="info3">パスワード </p>
+		<input type="password" id="type_inf"  name="password"  th:field="*{password}" placeholder="パスワードを入力してください。"/><br>
+		<input type="submit" id="sent" value="ログイン">
+	</form>
+
+    <a th:href="@{/signup}">▶ユーザー登録はコチラ</a>
+</body>
+</html>

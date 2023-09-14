@@ -24,7 +24,6 @@ public class WebSecurityConfig {
             .formLogin(
 				login -> login.loginPage(UrlConst.LOGIN)
 						.usernameParameter(USERNAME_PARAMETER)
-                        .passwordParameter("password")
 						.defaultSuccessUrl(UrlConst.MAIN, true));
                         
 
