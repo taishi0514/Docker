@@ -33,20 +33,26 @@ public class SignupController {
 	public String view(Model model, SignupForm form) {
 		return "signup";
 	}
-	
+
+	/**
+	*
+	*
+	*@param model モデル
+	*@param form 入力値
+	*@param bdResult エラー有無
+	*@return 表示画面
+	*/
 
 	@PostMapping("/signup")
-	public String signup(Model model, @Validated SignupForm form, BindingResult bdResult) {
+	public void signup(Model model, @Validated SignupForm form, BindingResult bdResult) {
 		if (bdResult.hasErrors()) {
 			editGuideMessage(model, MessageConst.FORM_ERROR, true);
-		}else{
-			var userInfoOpt = service.resistUserInfo(form);
-			var signupMessage = judgeMessageKey(userInfoOpt);
-			editGuideMessage(model, signupMessage.getMessageId(), signupMessage.isError());
-			return UrlConst.LOGIN;
+			return;
 		}
-			return null;
-		
+
+		Optional<UserInfo> userInfoOpt = service.resistUserInfo(form);
+		SignupMessage signupMessage = judgeMessageKey(userInfoOpt);
+		editGuideMessage(model, signupMessage.getMessageId(), signupMessage.isError());
 	}
 
 	/**
@@ -57,7 +63,7 @@ public class SignupController {
 	 * @param isError エラー有無
 	 */
 	private void editGuideMessage(Model model, String messageId, boolean isError) {
-		var message = AppUtil.getMessage(messageSource, messageId);
+		String message = AppUtil.getMessage(messageSource, messageId);
 		model.addAttribute("message", message);
 		model.addAttribute("isError", isError);
 	}
