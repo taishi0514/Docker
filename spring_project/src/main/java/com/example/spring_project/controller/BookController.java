@@ -1,5 +1,6 @@
 package com.example.spring_project.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Controller;
@@ -31,11 +32,15 @@ public class BookController {
 	public String post(Model model, @Validated BookForm form, BindingResult bdResult) {
 		if (bdResult.hasErrors()) {
 			model.addAttribute("error", "文字数制限です");
+			return "post";
 		}
 
 		Optional<BookInfo> bookInfoOpt = service.bookRegister(form);
-		model.addAttribute("bookName", bookInfoOpt);
+		if (bookInfoOpt.isPresent()) {
+			List<BookInfo> allBooks = service.getAllBooks();
+			model.addAttribute("books", allBooks);
+		}
 
         return "main";
-        }
+    }
 }
