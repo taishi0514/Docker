@@ -2,12 +2,14 @@ package com.example.spring_project.controller;
 
 import java.util.List;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.example.spring_project.authentication.UserDetailsImpl;
 import com.example.spring_project.constant.UrlConst;
 import com.example.spring_project.entity.BookInfo;
-import com.example.spring_project.form.BookForm;
+import com.example.spring_project.entity.UserInfo;
 import com.example.spring_project.service.BookService;
 
 import org.springframework.ui.Model;
@@ -22,11 +24,15 @@ public class MainController {
 	private final BookService service;
 
     @GetMapping(UrlConst.MAIN)
-	public String view(Model model, BookForm form) {
+	public String view(Model model,@AuthenticationPrincipal UserDetailsImpl userDetails) {
 
-		List<BookInfo> allBooks = service.getAllBooks();
-		model.addAttribute("books", allBooks);
+		UserInfo currentUser = userDetails.getUser();
+        List<BookInfo> userBooks = service.getUserId(currentUser);
+        
+        // モデルにユーザーの投稿を追加
+        model.addAttribute("userBooks", userBooks);
 
+		
 		return "main";
 	}
 

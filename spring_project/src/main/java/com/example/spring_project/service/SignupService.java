@@ -27,25 +27,31 @@ public class SignupService {
 	/** PasswordEncoder */
 	private final PasswordEncoder passwordEncoder;
 
+
+	public String getTime(){
+		TimeZone jp = TimeZone.getTimeZone("Asia/Tokyo");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		sdf.setTimeZone(jp);
+		return sdf.format(new Date());
+	}
+
+
     public Optional<UserInfo> resistUserInfo(SignupForm form) {
-		var userInfoExistedOpt = userInfoRepository.findByEmail(form.getEmail());
+		Optional<UserInfo> userInfoExistedOpt = userInfoRepository.findByEmail(form.getEmail());
 		if (userInfoExistedOpt.isPresent()) {
 			return Optional.empty();
 		}
 
-
-		Date nowDate = new Date();
-		TimeZone jp = TimeZone.getTimeZone("Asia/Tokyo");
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		sdf.setTimeZone(jp);
-		String createdat = sdf.format(nowDate);
+		// TimeZone jp = TimeZone.getTimeZone("Asia/Tokyo");
+		// SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		// sdf.setTimeZone(jp);
+		// String createdat = sdf.format(new Date());
 
 		UserInfo userInfo = mapper.map(form, UserInfo.class);
 		String encodedPassword = passwordEncoder.encode(form.getPassword());
-		// userInfo.setUserName(form.getUserName());
-		// userInfo.setEmail(form.getEmail());
+
 		userInfo.setPassword(encodedPassword);
-		userInfo.setCreatedAt(createdat);
+		userInfo.setCreatedAt(getTime());
 
 		return Optional.of(userInfoRepository.save(userInfo));
 	}
