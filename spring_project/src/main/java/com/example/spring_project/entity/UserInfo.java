@@ -38,14 +38,4 @@ public class UserInfo {
 
 	public UserInfo() {
 	}
-
-    // public UserInfo(String userName, String email, String password, String createdAt,
-	// 		String updatedAT) {
-	// 	this.userName = userName;
-	// 	this.email = email;
-	// 	this.password = password;
-	// 	this.createdAt = createdAt;
-	// 	this.updatedAT = updatedAT;
-	// }
-
 }

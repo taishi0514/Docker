@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogRefresh Pro</title>
+    <link th:href="@{/css/post.css}" rel="stylesheet">
+</head>
+<body>
+	<header>
+		<h1>
+			<a href="/main">LogRefresh Pro</a>
+		</h1>
+	</header>
+
+	<h2>読書ログ</h2>
+	<main>
+        <form th:action="@{/post}" method="post" th:object="${bookForm}">
+			<p class="title">タイトル</p>
+			<input type="text" id="type_title" th:field="*{bookName}"/>
+			<p class="contents">内容</p>
+			<textarea id="type_contents" th:field="*{contents}" placeholder="   例）本の内容を入力してください。"></textarea><br>
+			<input type="submit" id="sent" value="登録">
+		</form>
+	</main>
+</body>
+</html>

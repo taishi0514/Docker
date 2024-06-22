@@ -37,13 +37,6 @@ public class LoginController {
 	 * @param form 入力情報
 	 * @return 表示画面
 	 */
-	// @GetMapping(value = UrlConst.LOGIN, params = "error")
-	// public ModelAndView view(ModelAndView mv) {
-	// 	var errorInfo = (Exception) session.getAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
-	// 	mv.addObject("errorMsg", errorInfo.getMessage());
-    //     mv.setViewName("login");
-	// 	return mv;
-	// }
 
 	@GetMapping(value = UrlConst.LOGIN, params = "error")
 	public String viewWithError(Model model, LoginForm form) {

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.spring_project.constant.UrlConst;
 import com.example.spring_project.entity.UserInfo;
+import com.example.spring_project.form.LoginForm;
 import com.example.spring_project.form.SignupForm;
 import com.example.spring_project.service.SignupService;
 import com.example.spring_project.util.AppUtil;
@@ -35,25 +36,44 @@ public class SignupController {
 	}
 
 	/**
+	*会員登録または、エラー表示を行う
 	*
-	*
-	*@param model モデル
-	*@param form 入力値
-	*@param bdResult エラー有無
-	*@return 表示画面
+	* @param model モデル
+	* @param form 入力値
+	* @param bdResult エラー有無
+	* @return 表示画面
 	*/
 
+	// @PostMapping("/signup")
+	// public void signup(Model model, @Validated SignupForm form, BindingResult bdResult) {
+	// 	if (bdResult.hasErrors()) {
+	// 		editGuideMessage(model, MessageConst.FORM_ERROR, true);
+	// 		return;
+	// 	}
+
+	// 	Optional<UserInfo> userInfoOpt = service.resistUserInfo(form);
+	// 	SignupMessage signupMessage = judgeMessageKey(userInfoOpt);
+	// 	editGuideMessage(model, signupMessage.getMessageId(), signupMessage.isError());
+	// }
+
 	@PostMapping("/signup")
-	public void signup(Model model, @Validated SignupForm form, BindingResult bdResult) {
+	public String signup(Model model, @Validated SignupForm form, BindingResult bdResult) {
 		if (bdResult.hasErrors()) {
 			editGuideMessage(model, MessageConst.FORM_ERROR, true);
-			return;
+			// return "signup";
 		}
 
 		Optional<UserInfo> userInfoOpt = service.resistUserInfo(form);
 		SignupMessage signupMessage = judgeMessageKey(userInfoOpt);
 		editGuideMessage(model, signupMessage.getMessageId(), signupMessage.isError());
+
+		if (signupMessage.isError()) {
+			return "signup"; // ユーザー登録に失敗した場合、再度サインアップページを表示
+		}
+			model.addAttribute("loginForm", new LoginForm());
+			return "login"; // 成功した場合、ログインページにリダイレクト
 	}
+
 
 	/**
 	 * 画面に表示するガイドメッセージを設定する

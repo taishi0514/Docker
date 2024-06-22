@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+ 	<title>LogRefresh Pro MyPage</title>
+	<link th:href="@{/CSS/MyPage.css}" rel="stylesheet">
+</head>
+
+<body>
+<header>
+	<h1>
+		<a th:href="@{/main}">LogRefresh Pro</a>
+	</h1>
+</header>
+
+	<div class="center">
+		<ul>
+			<li class="top"><a th:href="@{/userUpdate}" class="edit_Member">会員情報変更</a></li>
+			<li><a href="" class="show_Books">書籍一覧</a></li>
+			<li>
+				<form th:action="@{/logout}" method="post">
+            		<input type="submit" class="btn" value="ログアウト" />
+            	</form>
+			</li>
+		</ul>
+	</div>	
+
+</body>
+</html>

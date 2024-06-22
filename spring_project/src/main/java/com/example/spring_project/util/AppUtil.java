@@ -7,7 +7,7 @@ import org.springframework.context.MessageSource;
 public class AppUtil {
 
     public static String getMessage(MessageSource messageSource, String messageId, Object... params) {
-		return messageSource.getMessage(messageId, params, Locale.JAPAN);
+		return messageSource.getMessage(messageId,params, Locale.JAPANESE);
 	}
 
     public static String addWildcard(String param) {

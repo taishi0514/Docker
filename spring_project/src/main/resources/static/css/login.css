@@ -1,0 +1,135 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #00aac2;
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1 a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 60px;
+}
+
+h2 {
+    text-align: center;
+    padding-top: 30px;
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.errorMsg {
+    text-align: left;
+    border-radius: 5px;
+    padding: 11px 24px;
+    background-color: #ffd4d1;
+    color: #930403;
+    border: solid 1px #930403;
+    width:700px;
+    margin:0;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    top: 28%;
+    left: 50%;
+    z-index: 5;
+    animation-name: Keyframes_Fade-001;
+      animation-timing-function: linear;
+      animation-duration: 2.5s;
+      animation-fill-mode: forwards;
+}
+
+@keyframes Keyframes_Fade-001 {
+    0% {
+      opacity: 0;
+    }
+
+    66% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 0;
+    }
+}
+
+.main {
+    text-align:center;
+    height: 100vh;
+}
+
+.reset {
+    padding-top:50px;
+}
+
+.email{
+	font-size:14px;
+    font-weight: 600;
+    padding-right:390px;
+    padding-top:50px;
+    margin:0;
+}
+
+.password{
+	font-size:14px;
+    font-weight: 600;
+    padding-right:420px;
+    padding-top:30px;
+    margin:0;
+}
+
+
+/* #signupForm{
+	text-align:center;
+} */
+
+#type_email{
+	width:500px;
+    height:50px;
+    border-radius: 10px;
+    opacity: 0.6;
+}
+
+#type_password{
+	width:500px;
+    height:50px;
+    border-radius: 10px;
+    opacity: 0.6;
+}
+
+#sent{
+	width:500px;
+    height:50px;
+    color:white;
+    background-color:#00aac2;
+    border-radius: 10px;
+    margin-top:50px;
+    margin-bottom:20px;
+    cursor: pointer;
+    border:none;
+    font-size: 16px;
+}
+
+.signup {
+    /* /* width:500px; */
+    /* height:50px; */
+    /* color:white;
+    background-color:#00aac2; */
+    color:#00aac2;
+    background-color:white;
+    border-radius: 10px;
+    cursor: pointer;
+    /* border:none; */
+    text-decoration: none;
+    /* display: block; */
+    margin:0 auto;
+    /* text-align: center; */
+    line-height:50px;
+}

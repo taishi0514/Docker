@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>会員情報変更</title>
+</head>
+<body>
+	<form th:action="@{/userUpdate}" method="post" th:object="${signupForm}">
+		<p class="info_top">氏名（全角）</p>
+		<input type="text" id="type_info" th:value="${#authentication.name}"/>
+		<p class="info2">メールアドレス</p>
+		<!-- <div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"> -->
+		<input type="email" id="type_inf" th:value="${email}"/>
+		<p class="info3">パスワード </p>
+		<!-- </div> -->
+		<input type="password" id="type_in" required name="password" th:value="${#authentication.principal.password}"/><br>
+		<input type="submit" id="sent" value="変更">
+	</form>
+</body>
+</html>
