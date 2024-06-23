@@ -3,9 +3,7 @@ package com.example.spring_project.controller;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,7 +16,6 @@ import com.example.spring_project.constant.UrlConst;
 import com.example.spring_project.entity.BookInfo;
 import com.example.spring_project.entity.UserInfo;
 import com.example.spring_project.form.BookForm;
-import com.example.spring_project.repository.BookInfoRepository;
 import com.example.spring_project.service.BookService;
 
 import lombok.RequiredArgsConstructor;
@@ -59,43 +56,10 @@ public class BookController {
         model.addAttribute("userBooks", userBooks);
 		
 
-        return "main";
+		// 多重送信防止のため、リダイレクト
+        return "redirect:/main";
+
     }
-
-
-	@GetMapping("/userBooks")
-    public String getUserBooks(Model model) {
-        // 現在の認証されたユーザーを取得
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-        
-        // ユーザーIDを使用してユーザーの投稿を取得
-        UserInfo currentUser = userDetails.getUser();
-        List<BookInfo> userBooks = service.getUserId(currentUser);
-        
-        // モデルにユーザーの投稿を追加
-        model.addAttribute("userBooks", userBooks);
-        
-        return "main";
-    }
-
-	// @GetMapping("/userBooks")
-    // public String getUserBooks(Model model,@AuthenticationPrincipal UserDetailsImpl userDetails) {
-    //     // 現在の認証されたユーザーを取得
-    //     // Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-    //     // UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-	// 	// BookInfo currentUser = bookInfoRepository.findById(userId);
-
-	// 	Integer userId = userDetails.getUserId();
-    //     // ユーザーIDを使用してユーザーの投稿を取得
-    //     // UserInfo currentUser = userDetails.getUser();
-    //     List<BookInfo> userBooks = service.getUserId(userId);
-        
-    //     // モデルにユーザーの投稿を追加
-    //     model.addAttribute("userBooks", userBooks);
-        
-    //     return "main";
-    // }
 
 
 

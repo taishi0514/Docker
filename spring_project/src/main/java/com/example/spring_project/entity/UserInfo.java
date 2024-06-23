@@ -1,5 +1,7 @@
 package com.example.spring_project.entity;
 
+import java.io.Serializable;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,7 +15,7 @@ import lombok.Data;
 @Table(name = "user_info")
 @Data
 @AllArgsConstructor
-public class UserInfo {
+public class UserInfo implements Serializable{
 
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
