@@ -24,6 +24,6 @@ public class UrlConst {
 	public static final String LOGOUT = "/logout";
 
 	/** 認証不要画面 */
-	public static final String[] NO_AUTHENTICATION = { LOGIN, SIGNUP, Forgot_PASS, "/css/**" };
+	public static final String[] NO_AUTHENTICATION = { LOGIN, SIGNUP, Forgot_PASS, "/css/**", "/js/**", "/webjars/**" };
 	
 }

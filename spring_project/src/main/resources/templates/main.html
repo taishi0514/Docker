@@ -41,10 +41,11 @@
 
             <div class="items">
                 <ul class="items__list">
-                    <li class="list__item" th:each="book : ${userBooks}">
-                        <h2 th:text="${book.bookName}"></h2>
+                    <li class="list__item">
+                        <form th:action="@{/main/{bookId}(bookId=${book.bookId})}" th:each="book : ${userBooks}" method="get">
+                            <button type="submit" th:text="${book.bookName}"></button>
+                        </form>
                     </li>
-
                 </ul>
 
 

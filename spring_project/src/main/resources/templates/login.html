@@ -30,6 +30,11 @@
 		<p class="password">パスワード </p>
 		<input type="password" id="type_password" th:field="*{password}" placeholder="   パスワードを入力してください。"/><br>
 		<input type="submit" id="sent" value="ログイン">
+		<div class="row center">
+			<p class="guest-login">
+				<a th:href="@{/login/test@test.jp/password}">ゲストログインで試す</a>
+			</p>
+		</div>
 	</form>
 
     <a class="signup" th:href="@{/signup}">▼会員登録はこちら</a>
