@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogRefresh Pro</title>
+    <link th:href="@{/css/post.css}" rel="stylesheet">
+	
+</head>
+<body>
+	<header>
+		<h1>
+			<a href="/main">LogRefresh Pro</a>
+		</h1>
+	</header>
+
+	<h2>読書ログ</h2>
+	<main>
+       <ul>
+            <li th:text="'タイトル: ' + ${bookInfo.bookName}"></li>
+            <li th:text="'内容: ' + ${bookInfo.contents}"></li>
+       </ul>
+	</main>
+</body>
+</html>

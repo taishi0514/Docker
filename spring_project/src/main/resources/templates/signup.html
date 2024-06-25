@@ -4,6 +4,10 @@
 	<meta charset="UTF-8">
  	<title>ユーザー登録画面</title>
 	<link th:href="@{/css/signup.css}" rel="stylesheet">
+	<!-- <script th:src="@{/webjars/jquery/jquery.min.js}"></script> -->
+	<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+
+	<script type="text/javascript" th:src="@{/js/doubleClick.js}"></script> 
 </head>
 
 <body>
@@ -24,7 +28,7 @@
 	<!-- </div> -->
 
 	<div class="main">
-	<form th:action="@{/signup}" method="post" name="password" th:object="${signupForm}">
+	<form th:action="@{/signup}" method="post" th:object="${signupForm}">
 		<p class="name">氏名（全角）</p>		
 		<input type="text" id="type_name" th:field="*{userName}" placeholder="   名前を入力してください。"/>
 		<span class="text-name" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></span>
@@ -42,4 +46,3 @@
 
 </body>
 </html>
-
