@@ -2,7 +2,6 @@ package com.example.spring_project.service;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.Optional;
 import java.util.TimeZone;
 
@@ -27,15 +26,9 @@ public class BookService {
     private final BookInfoRepository bookInfoRepository;
 
     private final UserInfoRepository userInfoRepository;
-
     /** Dozer Mapper */
 	private final Mapper mapper;
 
-
-    /** ブックテーブルに登録されている値を取得 */
-    public List<BookInfo> getAllBooks(){
-        return bookInfoRepository.findAll();
-    }
 
 
     public Optional<BookInfo> bookRegister(BookForm form, @AuthenticationPrincipal UserDetailsImpl userDetails) {
@@ -50,9 +43,6 @@ public class BookService {
 		BookInfo bookInfo = mapper.map(form, BookInfo.class);
         bookInfo.setRegisteredAt(createdat);
 
-        // ２０日に追加
-        // Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        // UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         Integer userId = userDetails.getUserId();
 
         UserInfo currentUser = userInfoRepository.findById(userId)
@@ -64,8 +54,4 @@ public class BookService {
     }
 
 
-    public List<BookInfo> getUserId(UserInfo user) {
-        return bookInfoRepository.findByUserInfo(user);
-    }
-    
 }

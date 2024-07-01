@@ -26,7 +26,7 @@ public class deleteAllBookController {
 
 
 
-    @Scheduled(fixedRate = 3600000)
+    @Scheduled(fixedRate = 36000000)
     public void cleanUpOldBooks() {
 
         LocalDateTime anHourAgo = LocalDateTime.now(JAPAN_ZONE).minusHours(1);
