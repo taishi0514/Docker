@@ -12,8 +12,6 @@ import com.example.spring_project.constant.UrlConst;
 import com.example.spring_project.entity.BookInfo;
 import com.example.spring_project.entity.UserInfo;
 import com.example.spring_project.repository.BookInfoRepository;
-import com.example.spring_project.service.BookService;
-
 import org.springframework.ui.Model;
 
 
@@ -24,7 +22,6 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class MainController {
 
-	private final BookService service;
 
 	private final BookInfoRepository bookInfoRepository;
 
@@ -32,7 +29,13 @@ public class MainController {
 	public String view(Model model,@AuthenticationPrincipal UserDetailsImpl userDetails) {
 
 		UserInfo currentUser = userDetails.getUser();
-        List<BookInfo> userBooks = service.getUserId(currentUser);
+        // List<BookInfo> userBooks = service.fetchUserId(currentUser);
+		List<BookInfo> userBooks = bookInfoRepository.findByUserInfo(currentUser);
+
+
+		// public List<BookInfo> fetchUserId(UserInfo user) {
+		// 	return bookInfoRepository.findByUserInfo(user);
+		// }
         
         // モデルにユーザーの投稿を追加
         model.addAttribute("userBooks", userBooks);
